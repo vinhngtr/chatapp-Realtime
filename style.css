@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+  --scrollbarBG: #CFD8DC;
+  --thumbBG: #90A4AE;
+}
+
+body {
+  font-family: "Roboto Mono", sans-serif;
+  color: #252525;
+  font-weight: 400;
+  background-color: #fff;
+  /* border-bottom: 1.6rem solid #edc84b; */
+  min-height: 100vh;
+  padding: 3.2rem;
+  padding-bottom: 6rem;
+  display: flex;
+  justify-content: center;
+    align-items: center;
+
+}
+.container{
+    padding: 3.2rem;
+    /* border: 2px solid #252525; */
+    border-radius: 12px;
+    font-size: 2rem;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.detailInfor, .name-detail{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.text-err{
+    padding: 8px 10px;
+    background-color: #f8d7da;
+   text-align: center;
+   /* font-weight: 600; */
+   color: #721c24;
+   border-radius: 5px;
+   font-size: 15px;
+}
+.fiel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.fiel label{
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+.fiel i{
+    position: absolute;
+    top: 75%;
+    right: 15px;
+    transform: translateY(-50%);
+    /* filter: blur(5px); */
+    color: #ccc;
+    cursor: pointer;
+}
+ input{
+   padding: 1rem 2rem;
+   outline: none;
+   border: 1px solid #f1eded;
+   border-radius: 5px;
+   font-size: 1.8rem;
+}
+
+.submit input{
+    background-color: #252525;
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+.submit input:hover{
+    background-color: #f3f2f0;
+    color: #252525;
+}
+.name-detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.header{
+    font-size: 30px;
+    text-transform: uppercase;
+    text-shadow: .1em .1em 0 hsl(200 50% 30%);
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e6e6e6;
+}
+.other{
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+.other a{
+    color: blue;
+}
+
+/* -------------------------------- */
+/*! ============= CSS FOR FILE USER ==================== */
+.forUser{
+    gap: 2rem;
+}
+button{
+    padding: 10px 20px;
+    background-color: #0c0808;
+    color: #fff;
+    font-size: 1.8rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button a{
+    color: #fff;
+}
+button:hover{
+    background-color: #f3f2f0;
+}
+button:hover a{
+    color: #0c0808;
+}
+.personal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15rem;
+}
+.detail-infor{
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 2rem;
+}
+.detail-infor img{
+    display: block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.user{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.name-user{
+    font-size: 2rem;
+    font-weight: 600;
+    color: #252525;
+}
+.stt-user, .mess-user{
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #a19e9e;
+}
+.search-user i{
+   display: block;
+   padding: 10px;
+   /* border: 1px solid #e6e6e6; */
+   border: none;
+   background-color: #393535;
+   color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.search-user{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 30px;
+    padding-top: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
+}
+.search-user::after{
+    content: "Friends";
+    position: absolute;
+    background-color: #fff;
+    font-weight: 700;
+    color: #898f93;
+    text-transform: uppercase;
+    padding: 2px;
+    padding-right: 10px;
+    left: 0;
+    bottom: -12px;
+}
+.search-user input{
+    outline: none;
+    padding: 12px;
+}
+.listFriends{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    justify-content: space-between;
+    max-height: 350px;
+    overflow-y: auto; 
+    scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+.listFriends::-webkit-scrollbar{
+    /* cursor: pointer; */
+    width: 11px;
+}
+.listFriends::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+}
+.listFriends::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG) ;
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+}
+.friend{
+    padding: 15px 5px;
+    /* cursor: pointer; */
+    border-radius: 10px;
+    /* gap: ; */
+}
+.mess-user{
+    width: 175px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+/* -------------------------------- */
+/*! ================== CSS FOR CONTAINER CHATTING ======================== */
