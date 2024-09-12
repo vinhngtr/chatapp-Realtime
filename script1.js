@@ -5,3 +5,17 @@ if (listFriend.length >= 2) {
     listFriend[i].style.borderBottom = "1px solid #e6e6e6";
   }
 }
+
+// -------------------------------/
+const valueInput = document.querySelector(".search-user input");
+const clickDelete = document.querySelector(".search-user i");
+valueInput.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    // console.log("Nội dung tìm kiếm là: ", valueInput.value);
+    valueInput.value = "";
+  }
+});
+clickDelete.addEventListener("click", (e) => {
+  // console.log("Nội dung tìm kiếm là: ", valueInput.value);
+  valueInput.value = "";
+});
