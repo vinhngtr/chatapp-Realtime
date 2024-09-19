@@ -66,13 +66,13 @@ body {
     margin-bottom: 10px;
     font-weight: 500;
 }
-.fiel i{
+.showpass{
     position: absolute;
     top: 75%;
     right: 15px;
     transform: translateY(-50%);
     /* filter: blur(5px); */
-    color: #ccc;
+    color: rgb(204, 204, 204);
     cursor: pointer;
 }
 .fiel input{
@@ -85,7 +85,6 @@ body {
 }
 
 .submit input{
-    
     background-color: #252525;
     color: #fff;
     font-size: 2rem;
@@ -169,22 +168,25 @@ button:hover a{
     font-size: 2rem;
     font-weight: 600;
     color: #252525;
+
 }
 .stt-user, .mess-user{
     font-size: 1.6rem;
-    font-weight: 400;
+    font-weight: 500;
     color: #a19e9e;
 }
+
 .search-user i{
    display: block;
    padding: 10px;
-   /* border: 1px solid #e6e6e6; */
    border: none;
    background-color: #393535;
    color: #fff;
     border-radius: 5px;
     cursor: pointer;
 }
+
+
 .search-user{
     position: relative;
     display: flex;
@@ -216,6 +218,10 @@ button:hover a{
     border: 1px solid #f1eded;
     border-radius: 5px;
     font-size: 1.8rem;
+}
+.notFriend{
+    text-align: center;
+    color: #a19e9e;
 }
 .listFriends{
     margin-top: 15px;
@@ -287,11 +293,8 @@ button:hover a{
     padding: 20px 30px 20px 30px;
     display: flex;
     flex-direction: column;
-    /* gap: 2rem; */
     overflow-y: auto;
-    /* overflow-y: auto;  */
     scrollbar-width: none;
-  /* scrollbar-color: var(--thumbBG) var(--scrollbarBG); */
 }
 .contentMess{
     display: flex;
@@ -342,6 +345,12 @@ form{
 }
 form input{
     width: calc(100% - 50px);
+    outline: none;
+    padding: 12px;
+    padding: 1rem 2rem;
+    border: 1px solid #f1eded;
+    border-radius: 5px;
+    font-size: 1.8rem;
 }
 .submitMess:hover{
     background-color: #7d680b;
