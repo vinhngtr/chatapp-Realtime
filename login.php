@@ -1,5 +1,5 @@
 <?php
-require_once "./config.php";
+require_once "./php/config.php";
 session_start();
 $display = "none";
 $mess_err = "";
@@ -9,20 +9,19 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $sql = "SELECT * FROM  users WHERE email = '$email' AND password = '$password'";
     $result = mysqli_query($conn, $sql);
-    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    if (empty($users)) {
+    if (mysqli_num_rows($result) == 0) {
         $mess_err = "Tài khoản không tồn tại!";
         $display = "block";
-    } else {
-        foreach ($users as $user) {
+    } else if (mysqli_num_rows($result) > 0) {
+        $sql2 = "UPDATE users SET status = 'Online now' WHERE email = '$email'";
+        $stt = mysqli_query($conn, $sql2);
+        while ($user = mysqli_fetch_assoc($result)) {
             $_SESSION['id-user'] = $user['id_user'];
             $_SESSION['name'] = $user['firstName'] . " " . $user['lastName'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['password'] = $user['password'];
             $_SESSION['src_img'] = $user['src_img'];
             $_SESSION['status'] = $user['status'];
-            $mess_err = "Đăng nhập thành công!";
-            $display = "block";
             header("Location: user.php");
         }
     }
@@ -67,7 +66,7 @@ if (isset($_POST['submit'])) {
             </div>
         </section>
     </div>
-    <script src="./showPassword.js"></script>
+    <script src="./js/showPassword.js"></script>
 </body>
 
 </html>

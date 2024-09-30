@@ -123,6 +123,9 @@ body {
 .forUser{
     gap: 2rem;
 }
+.personal form{
+    padding: 0px;
+}
 button{
     padding: 10px 20px;
     background-color: #0c0808;
@@ -149,31 +152,45 @@ button:hover a{
 }
 .detail-infor{
     display: flex;
-    /* justify-content: space-between; */
     gap: 2rem;
 }
 .detail-infor img{
     display: block;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
-.user{
+.per{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
-.name-user{
+.name-per{
     font-size: 2rem;
     font-weight: 600;
     color: #252525;
 
 }
-.stt-user, .mess-user{
+ .mess-user{
     font-size: 1.6rem;
     font-weight: 500;
-    color: #a19e9e;
+    color: #ccc;
+}
+.stt-per{
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #0c0;
+}
+
+.stt-icon{
+    color: #ccc;
+}
+ .online{
+    color: #0c0;
+}
+.off{
+    color: #ccc;
 }
 
 .search-user i{
@@ -199,7 +216,7 @@ button:hover a{
     border-top: 1px solid #e6e6e6;
 }
 .search-user::after{
-    content: "Friends";
+    content: "Other users";
     position: absolute;
     background-color: #fff;
     font-weight: 700;
@@ -258,7 +275,6 @@ button:hover a{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
 }
 
 /* -------------------------------- */
@@ -295,46 +311,56 @@ button:hover a{
     flex-direction: column;
     overflow-y: auto;
     scrollbar-width: none;
+    transition: scroll-behavior 0.5s ease;
 }
 .contentMess{
     display: flex;
+    flex-direction: row;
     gap: 1.2rem;
-    width: 70%;
+    /* width: 70%; */
     margin: 10px 0;
 }
-.contentMess p{
+.contentMess .detail p{
     /* border-radius: 20px 5px */
     word-spacing: normal;
     letter-spacing: normal;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     text-align:left;
+
     padding: 15px;
     font-size: 16px;
 }
-.mSend{
-    /* right: 20px; */
-    align-self: flex-end;
+.contentChat .mSend {
+    display: flex;
 }
-.mReceive{
-    /* left: 10px; */
-    align-self: start;;
+.mSend .detail{
+    margin-left: auto;
+    max-width: calc(100% - 200px);
+}
+.contentChat .mReceive {
+    display: flex;
+}
+.mReceive .detail{
+    margin-right: auto;
+    max-width: calc(100% - 200px);
 }
 .imgChat{
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     object-fit: cover;
 }
-.mSend p{
+.mSend .detail p{
     border-radius: 25px 2px;
     background-color: #1a1818;
     color: white;
+    word-wrap: break-word;
 }
-.mReceive p{
+.mReceive .detail p{
     border-radius: 2px 25px;
     background-color: white;
     color: #1a1818;
-    
+    word-wrap: break-word;
 }
 form{
     padding: 20px;

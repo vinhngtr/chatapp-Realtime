@@ -1,6 +1,6 @@
 <?php
-// session_start();
-require_once "./config.php";
+session_start();
+require_once "./php/config.php";
 $successMessage = '';
 $messErr = "";
 $display = "none";
@@ -94,7 +94,6 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-
     $messErr = validate_name($fName);
     if (empty($messErr)) {
         $messErr = validate_name($lName);
@@ -122,7 +121,7 @@ if (isset($_POST['submit'])) {
             $time = time();
             $name_img = $imageName;
             if (move_uploaded_file($pathfile, "images/" . $name_img)) {
-                $status = "Online now";
+                $userid = rand(time(), 100000);
             }
         }
     } else {
@@ -137,13 +136,23 @@ if (isset($_POST['submit'])) {
         if (mysqli_num_rows($sql) > 0) {
             $successMessage = "Email đã tồn tại!";
         } else {
-            $userid = rand(time(), 100000);
+            $status = "Online now";
             $sql = "INSERT INTO users (id_user, firstName, lastName, email, password, src_img, status) VALUES ('$userid','$fName', '$lName', '$email', '$password', '$name_img', '$status')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
-                // echo "<script>alert('Đăng kí tài khoản thành công!');</script>";
-                $successMessage = "Đăng kí tài khoản thành công!";
-                header("Location: login.php");
+                $sql1 = "SELECT * FROM users WHERE email = '$email'";
+                $result1 = mysqli_query($conn, $sql1);
+                if (mysqli_num_rows($result1) > 0) {
+                    $row = mysqli_fetch_assoc($result1);
+                    $_SESSION['id-user'] = $row['id_user'];
+                    $_SESSION['name'] = $row['firstName'] . " " . $row['lastName'];
+                    $_SESSION['email'] = $row['email'];
+                    $_SESSION['password'] = $row['password'];
+                    $_SESSION['src_img'] = $row['src_img'];
+                    $_SESSION['status'] = $row['status'];
+                    $successMessage = "Đăng kí tài khoản thành công!";
+                    header("Location: user.php");
+                }
             } else {
                 $successMessage = "Hệ thống gặp lỗi!";
             }
@@ -171,12 +180,6 @@ if (isset($_POST['submit'])) {
             <form class="detailInfor" action="#" method="post" enctype="multipart/form-data">
                 <div class="text-err" style="display: <?php echo $display; ?>"><?php echo $messErr; ?>
                 </div>
-                <script>
-                    // Hàm để hiển thị hộp thoại alert khi trang tải xong
-                    <?php if ($successMessage): ?>
-                        alert("<?php echo $successMessage; ?>");
-                    <?php endif; ?>
-                </script>
                 <div class="name-detail">
                     <div class="fiel">
                         <label for="fName">FirstName</label>
@@ -211,7 +214,7 @@ if (isset($_POST['submit'])) {
         </section>
     </div>
 
-    <script src="./showPassword.js"></script>
+    <script src="./js/showPassword.js"></script>
 </body>
 
 </html>

@@ -1,24 +1,40 @@
+<?php
+session_start();
+require_once "./php/config.php";
+if (!isset($_SESSION['id-user'])) {
+    header("Location: login.html");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <title>Tin nhắn của bạn</title>
+    <title>Message</title>
 </head>
+
 <body>
     <div class="container forMess">
         <section class="content">
             <header class="header-user">
                 <div class="material">
-                    <a class="backPrev" href="./user.html"><i class="fa-solid fa-arrow-left"></i></a>
+                    <?php
+                    $id_receiver = $_GET['id'];
+                    $sql = mysqli_query($conn, "SELECT * FROM users WHERE id_user = '{$_GET['id']}'");
+                    $row = mysqli_fetch_assoc($sql);
+                    ?>
+                    <a class="backPrev" href="./user.php"><i class="fa-solid fa-arrow-left"></i></a>
                     <div class="personal">
                         <div class="detail-infor">
-                            <img src="https://hiup.com.vn/wp-content/uploads/2024/02/su-that-neymar.jpg" alt="">
-                            <div class="user">
-                                <span class="name-user">Neymar</span>
-                                <p class="stt-user">Active now</p>
+                            <img src="./images/<?php echo $row["src_img"] ?>" alt="">
+                            <div class="per">
+                                <span class="name-per"><?php echo $row['firstName'] . " " . $row['lastName'] ?></span>
+                                <?php ($row['status'] == "Offline") ? $sw_off = "off" : $sw_off = "" ?>
+                                <p class="stt-per <?php echo $sw_off ?>"><?php echo $row['status'] ?></p>
                             </div>
                         </div>
                     </div>
@@ -26,63 +42,18 @@
                 <div class="space" style="width: 1rem;"></div>
             </header>
             <div class="contentChat">
-                <div class="contentMess mSend">
-                    <p class="detail">
-                        Cộng hòa xã hội chủ nghĩa Việt Nam. Độc lập tự do hạnh phúc
-                    </p>
-                </div>
-
-                <div class="contentMess mReceive">
-                    <img class="imgChat" src="https://hiup.com.vn/wp-content/uploads/2024/02/su-that-neymar.jpg" alt="">
-                    <p class="detail">
-                        Cộng hòa xã hội 
-                    </p>
-                </div>
-                <div class="contentMess mReceive">
-                    <img class="imgChat" src="https://hiup.com.vn/wp-content/uploads/2024/02/su-that-neymar.jpg" alt="">
-                    <p class="detail">
-                        Cộng hòa xã hội 
-                    </p>
-                </div>
-                <div class="contentMess mReceive">
-                    <img class="imgChat" src="https://hiup.com.vn/wp-content/uploads/2024/02/su-that-neymar.jpg" alt="">
-                    <p class="detail">
-                        Cộng hòa xã hội 
-                    </p>
-                </div>
-                <div class="contentMess mReceive">
-                    <img class="imgChat" src="https://hiup.com.vn/wp-content/uploads/2024/02/su-that-neymar.jpg" alt="">
-                    <p class="detail">
-                        Cộng hòa xã hội 
-                    </p>
-                </div>
-                <div class="contentMess mReceive">
-                    <img class="imgChat" src="https://hiup.com.vn/wp-content/uploads/2024/02/su-that-neymar.jpg" alt="">
-                    <p class="detail">
-                        Cộng hòa xã hội 
-                    </p>
-                </div>
-                <div class="contentMess mReceive">
-                    <img class="imgChat" src="https://hiup.com.vn/wp-content/uploads/2024/02/su-that-neymar.jpg" alt="">
-                    <p class="detail">
-                        Cộng hòa xã hội 
-                    </p>
-                </div>
-                <div class="contentMess mReceive">
-                    <img class="imgChat" src="https://hiup.com.vn/wp-content/uploads/2024/02/su-that-neymar.jpg" alt="">
-                    <p class="detail">
-                        Để ẩn thanh scrollbar khi cuộn nội dung, bạn có thể sử dụng các phương pháp CSS khác nhau tùy thuộc vào trình duyệt bạn đang hỗ trợ. Dưới đây là các cách phổ biến để ẩn thanh scrollbar trong CSS.
-                    </p>
-                </div>
             </div>
             <footer>
-                <form class="sendMess" action="#" method="post">
-                    <input type="text" placeholder="Type a message">
+                <form class="sendMess" action="#" method="post" autocomplete="off">
+                    <input type="text" name="id_send" value="<?php echo $_SESSION['id-user'] ?>" hidden>
+                    <input type="text" name="id_recei" value="<?php echo $id_receiver ?>" hidden>
+                    <input type="text" name="mess" class="input-field" placeholder="Type a message">
                     <button class="submitMess" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
                 </form>
             </footer>
         </section>
     </div>
-    <script src="./script2.js"></script>
+    <script src="./js/chatting.js"></script>
 </body>
+
 </html>
