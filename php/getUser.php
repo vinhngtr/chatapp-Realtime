@@ -8,6 +8,7 @@ if (mysqli_num_rows($sql) == 0) {
     $output =  '<div class="notFriend">No user available to chat</div>';
 } else if (mysqli_num_rows($sql) > 0) {
     while ($row = mysqli_fetch_assoc($sql)) {
+        //-- lấy mess cuối cùng giữa user(đăng nhập) và user khác có ở database --
         $sql1 = mysqli_query($conn, "SELECT * FROM message WHERE (IDSend_mess = '{$row['id_user']}' AND IDReceive_mess = '{$id_send}') OR (IDSend_mess = '{$id_send}' AND IDReceive_mess = '{$row['id_user']}') ORDER BY mess_id DESC LIMIT 1");
         $row1 = mysqli_fetch_assoc($sql1);
         $result = "";

@@ -8,7 +8,7 @@ if (!isset($_SESSION['id-user'])) {
 $id_recei = mysqli_real_escape_string($conn, $_POST['id_recei']);
 $id_send = mysqli_real_escape_string($conn, $_POST['id_send']);
 $sql = mysqli_query($conn, "SELECT * FROM message 
-                            LEFT JOIN users ON message.IDReceive_mess = users.id_user
+                            LEFT JOIN users ON message.IDSend_mess = users.id_user
                             WHERE (IDSend_mess = '{$id_recei}' 
                             AND IDReceive_mess = '{$id_send}') 
                             OR (IDSend_mess = '{$id_send}' 
